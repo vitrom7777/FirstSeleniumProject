@@ -69,5 +69,61 @@ public class FindElementTest {
         WebElement linkText = driver.findElement(By.linkText("Let the car work"));
         System.out.println(linkText.getText());
     }
+    @Test
+    public void findElementByPartialLinText(){
+        WebElement partialText = driver.findElement(By.partialLinkText("work"));
+        System.out.println(partialText.getText());
+    }
+
+    @Test
+    public void findElementByCssSelector(){
+        //driver.findElement(By.tagName("h1"));
+        //tag name "h1"  -> css "h1"
+        driver.findElement(By.cssSelector("h1"));
+        // id "city" -> css "#city"
+        driver.findElement(By.cssSelector("#city"));
+
+       // driver.findElement(By.className("telephone"));
+       // class "telephone" -> css ".telephone"
+        WebElement element = driver.findElement(By.cssSelector(".telephone"));
+        System.out.println(element.getText());
+        // [atr='par']
+        WebElement element1 = driver.findElement(By.cssSelector("[href='/search']"));
+        WebElement element2 = driver.findElement(By.cssSelector("[for='city']"));
+        System.out.println(element2.getText());
+// contains -> *
+        WebElement element3 = driver.findElement(By.cssSelector("[href*='car']"));
+
+        // start -> ^
+        WebElement element4 = driver.findElement(By.cssSelector("[href^='/let']"));
+        System.out.println(element4.getText());
+        // end string  $
+        driver.findElement(By.cssSelector("[href$='work']"));
+
+        // composite cssSelector
+        //[a.navigation-link[href='/search']=> a -> tag
+        // .navigation-link ->class
+        // [href='/search'] ->para
+        driver.findElement(By.cssSelector("a.navigation-link[href='/search']"));
+
+
+        // tag+class
+        driver.findElement(By.cssSelector("div.social-networks"));
+
+driver.findElement(By.cssSelector(".logo>img"));  // > one step below
+
+        driver.findElement(By.cssSelector(".feedback .feedback-date")); // <space >
+        // one or more steps below
+
+        //<tag> or <id> or <class>:nth-child(n)
+        WebElement element5 = driver.findElement(By.cssSelector(".feedback:nth-child(5)"));
+        System.out.println(element5.getText());
+
+        //
+        WebElement element6 = driver.findElement(By.cssSelector("[type='submit']"));
+
+        WebElement element7 = driver.findElement(By.cssSelector(".title-container span.title"));
+    // class+ <space>+ class
+    }
 
 }

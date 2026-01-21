@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -13,17 +14,23 @@ public class HomeWork {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    @Test //
+    public void FindElementByCssSelector1() {
+// h3 ->  class + <space > +tag (one or more steps below)
+        WebElement Information = driver.findElement(By.cssSelector(".footer h3"));
+        System.out.println(Information.getText());
+    }
 
 
     @Test
-    public void FindElementByTegName(){
+    public void FindElementByTegName() {
         //1.tag name -> h3 Information
         WebElement h3 = driver.findElement(By.tagName("h3"));
         System.out.println(h3.getText());
@@ -34,18 +41,37 @@ public class HomeWork {
         List<WebElement> links = driver.findElements(By.tagName("a"));
         System.out.println(links.size());
     }
+    @Test // id -> css
+    public void FindElementByCssSelector2(){
+// for id ->  tag + <space > + id (one or more steps below)
+        WebElement div = driver.findElement(By.cssSelector("div #flyout-cart"));
+        System.out.println(div.getText());
+    }
+
     @Test
-    public void findElementById(){
+
+    public void findElementById() {
         //1. By id
         WebElement topcartlink = driver.findElement(By.id("topcartlink"));
         System.out.println(topcartlink.getAttribute("id"));
         //2. By id
-       WebElement flyout = driver.findElement(By.id("flyout-cart"));
-       System.out.println(flyout.getAttribute("id"));
+        WebElement flyout = driver.findElement(By.id("flyout-cart"));
+        System.out.println(flyout.getAttribute("id"));
     }
+
+    @Test //
+    public void FindElementByCssSelector3() {
+        //  BOOKS -> .top-menu class + [href='/books' para
+        WebElement books = driver.findElement(By.cssSelector(".top-menu [href='/books']"));
+        System.out.println(books.getText());
+        //  Register -> .header-links-wrapper class + .ico-register class
+        WebElement Register = driver.findElement(By.cssSelector(".header-links-wrapper .ico-register"));
+        System.out.println(Register.getText());
+    }
+
     @Test
-    public void findElementByClassName(){
-       WebElement topMenu = driver.findElement(By.className("top-menu"));
+    public void findElementByClassName() {
+        WebElement topMenu = driver.findElement(By.className("top-menu"));
         System.out.println(topMenu.getText());
         // result:
         // BOOKS
@@ -69,9 +95,10 @@ public class HomeWork {
         System.out.println(footerPoweredBy.getText());
         // result: Powered by nopCommerce
     }
+
     @AfterMethod
-    public void tearDown(){
-        if(driver !=null){
+    public void tearDown() {
+        if (driver != null) {
             driver.quit();
         }
 
