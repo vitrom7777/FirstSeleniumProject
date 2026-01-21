@@ -11,8 +11,9 @@ import java.util.List;
 
 public class FindElementTest {
     WebDriver driver;
+
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://ilcarro.web.app");
         // maximize browser to windows
@@ -21,44 +22,52 @@ public class FindElementTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-@AfterMethod
-    public void tearDown(){
-        if(driver !=null){
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
             driver.quit();
         }
 
-}
-@Test
-    public void FindElementByTegName(){
+    }
+
+    @Test
+    public void FindElementByTegName() {
         //tag name -> h1
-    WebElement h1 = driver.findElement(By.tagName("h1"));
-    System.out.println(h1.getText());
+        WebElement h1 = driver.findElement(By.tagName("h1"));
+        System.out.println(h1.getText());
 
-    WebElement h2 = driver.findElement(By.tagName("h2"));
-    System.out.println(h2.getText());
+        WebElement h2 = driver.findElement(By.tagName("h2"));
+        System.out.println(h2.getText());
 
-    WebElement link = driver.findElement(By.tagName("a"));
-    System.out.println(link.getAttribute("class"));
+        WebElement link = driver.findElement(By.tagName("a"));
+        System.out.println(link.getAttribute("class"));
 
-    List<WebElement> links = driver.findElements(By.tagName("a"));
-    System.out.println(links.size());
-}
-@Test
-    public void findElementById(){
-    WebElement city = driver.findElement(By.id("city"));
-    System.out.println(city.getAttribute("id"));
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+        System.out.println(links.size());
+    }
 
-    WebElement dates = driver.findElement(By.id("dates"));
-    System.out.println(dates.getAttribute("id"));
-}
+    @Test
+    public void findElementById() {
+        WebElement city = driver.findElement(By.id("city"));
+        System.out.println(city.getAttribute("id"));
 
-@Test
-    public void findElementByClassName(){
-    WebElement telephone = driver.findElement(By.className("telephone"));
-    System.out.println(telephone.getText());
+        WebElement dates = driver.findElement(By.id("dates"));
+        System.out.println(dates.getAttribute("id"));
+    }
 
-    WebElement description = driver.findElement(By.className("description"));
-    System.out.println(description.getText());
+    @Test
+    public void findElementByClassName() {
+        WebElement telephone = driver.findElement(By.className("telephone"));
+        System.out.println(telephone.getText());
+
+        WebElement description = driver.findElement(By.className("description"));
+        System.out.println(description.getText());
+    }
+
+    @Test
+    public void findElementByLinkText() {
+        WebElement linkText = driver.findElement(By.linkText("Let the car work"));
+        System.out.println(linkText.getText());
     }
 
 }
