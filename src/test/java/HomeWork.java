@@ -103,5 +103,23 @@ public class HomeWork {
         }
 
     }
+    // am ande
+    @Test
+    public void findElementByXpath() {
+//  h3 ->  class + <space > +tag (one or more steps below)
+//        WebElement Information = driver.findElement(By.cssSelector(".footer h3"));
+       //  WebElement div = driver.findElement(By.cssSelector("div #flyout-cart"));
+        WebElement div = driver.findElement(By.xpath("//*[@id='flyout-cart']"));
 
-}
+        //  BOOKS -> .top-menu class + [href='/books' para
+       //  WebElement books = driver.findElement(By.cssSelector(".top-menu [href='/books']"));
+       //driver.findElement(By.xpath("//*[@class='top-menu'/*@href='/books']"));
+
+        //  Register -> .header-links-wrapper class + .ico-register class
+        //WebElement Register = driver.findElement(By.cssSelector(".header-links-wrapper .ico-register"));
+        //driver.findElement(By.xpath("//*[@class='header-links-wrapper'//@class='ico-register']"));
+
+    }
+
+    }
+
