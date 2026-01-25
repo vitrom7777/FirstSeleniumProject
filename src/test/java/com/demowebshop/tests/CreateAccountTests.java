@@ -73,7 +73,8 @@ public class CreateAccountTests extends  TestBase{
 
         // assert ALERT
         //Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 register-continue-button' and @value='Continue']")));
-Assert.assertTrue(isAlertPresent());
+// Assert.assertTrue(isAlertPresent());  No windows alert on the this site
+        Assert.assertTrue(isElementPresent(By.xpath("//li[contains(text(),'The specified email already exists')]")));
     }
 
 }

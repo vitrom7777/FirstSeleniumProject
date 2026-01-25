@@ -40,7 +40,8 @@ public class LoginTests extends TestBase{
 
 
     // assert Log in is present
-    Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 login-button' and @value='Log in']")));
+    //Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 login-button' and @value='Log in']")));
+    Assert.assertTrue(isElementPresent(By.cssSelector("[href='/logout']")));
 
 }
 
