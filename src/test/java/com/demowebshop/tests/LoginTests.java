@@ -1,7 +1,6 @@
 package com.demowebshop.tests;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase{
@@ -10,16 +9,7 @@ public class LoginTests extends TestBase{
     public void loginRegisteredUserPositiveTest(){
 // click on `Register` link
     //driver.findElement(By.cssSelector("[href='/register']")).click();
-    click(By.cssSelector("[href='/login']"));
-
-    // Enter First name: *
-    //1.click
-    //type(By.name("FirstName"), "John");
-
-    //*
-    // Enter Last name: *
-    //1.click
-    //type(By.name("LastName"), "Smith");
+    clickOnLoginButton();
 
     // Enter email *
     //1.click
@@ -41,7 +31,7 @@ public class LoginTests extends TestBase{
 
     // assert Log in is present
     //Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 login-button' and @value='Log in']")));
-    Assert.assertTrue(isElementPresent(By.cssSelector("[href='/logout']")));
+    isElementLogoutPresent();
 
 }
 
