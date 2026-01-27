@@ -1,38 +1,22 @@
 package com.demowebshop.tests;
 
+import com.demowebshop.core.TestBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class LoginTests extends TestBase{
+public class LoginTests extends TestBase {
 
-@Test
-    public void loginRegisteredUserPositiveTest(){
-// click on `Register` link
-    //driver.findElement(By.cssSelector("[href='/register']")).click();
-    clickOnLoginButton();
+    @Test
+    public void loginRegisteredUserPositiveTest() {
+        app.getUser().clickOnLoginButton();
 
-    // Enter email *
-    //1.click
-    type(By.name("Email"), "test_v@gmail.com");
+        app.getUser().type(By.name("Email"), "test_v@gmail.com");
+        app.getUser().type(By.name("Password"), "Qwerty12345@");
 
-    // password
-    // Enter password *
-    //1.click
-    type(By.name("Password"), "Qwerty12345@");
+        app.getUser().clickOnLogInButton();
 
-    // password confirm
-    //1.click
-    //type(By.name("ConfirmPassword"), "Qwerty12345@");
+        app.getUser().isElementLogoutPresent();
 
-    // click on Registration button  Log in
-    //click(By.name("register-button"));
-    click(By.xpath("//input[@class='button-1 login-button' and @value='Log in']"));
-
-
-    // assert Log in is present
-    //Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 login-button' and @value='Log in']")));
-    isElementLogoutPresent();
-
-}
+    }
 
 }

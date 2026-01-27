@@ -1,58 +1,65 @@
 package com.demowebshop.tests;
 
+import com.demowebshop.core.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ItemTests extends TestBase {
-    //WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(20));
 
     @BeforeMethod
     public void precondition() {
-// click on `Register` link
-        //driver.findElement(By.cssSelector("[href='/register']")).click();
-        clickOnLoginButton();
 
-        type(By.name("Email"), "test_v@gmail.com");
+        app.getUser().clickOnLoginButton();
+        fillLoginForm("test_v@gmail.com", "Qwerty12345@");
+        clickOnLogin();
+    }
 
-        type(By.name("Password"), "Qwerty12345@");
+    public void clickOnLogin() {
+        app.getUser().clickOnLogInButton();
+    }
 
-        // click on Registration button  Log in
-        //click(By.name("register-button"));
-        click(By.xpath("//input[@class='button-1 login-button' and @value='Log in']"));
-
-
-        // assert Log in is present
-        //Assert.assertTrue(isElementPresent(By.xpath("//input[@class='button-1 login-button' and @value='Log in']")));
-        isElementLogoutPresent();
+    public void fillLoginForm(String email, String password) {
+        app.getUser().type(By.name("Email"), email);
+        app.getUser().type(By.name("Password"), password);
     }
 
     @Test
     public void addItemToCartTest() {
 
-//   1. кликнуть на кнопку второго товара Add to cart;
-        WebElement addToCartButton2 =
-                wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[@data-productid='31']//input[@value='Add to cart']")));
-        addToCartButton2.click();
-        //2.кликнуть на ссылку Shopping cart в хэдере;
-        WebElement shopCartLink = driver.findElement(By.id("topcartlink"));
-        shopCartLink.click();
-
-// 3. проверить добавление товара в корзину по его названию(имени)
-        driver.findElement(By.xpath("//a[text()='14.1-inch Laptop']"));
-        // String expectedName = "14.1-inch Laptop";
-
-        // 4.Assert
-        //Assert.assertTrue(driver.findElement(By.xpath("//a[text()='14.1-inch Laptop']")).isDisplayed());
-        Assert.assertTrue(isElementPresent(By.xpath("//a[text()='14.1-inch Laptop']")));
+        String name = itemName("3");
+        clickOnItemInList("3");
+        clickOnShoppingCartLink();
+        Assert.assertTrue(verifyByName(name));
     }
-}
+
+    public String itemName(String itemNameNumber) {
+        return app.driver.findElement(By.cssSelector(".item-box:nth-child(" + itemNameNumber + ") h2>a")).getText();
+    }
+
+    public void clickOnShoppingCartLink() {
+        app.getUser().click(By.id("topcartlink"));
+    }
+
+    public void clickOnItemInList(String itemNumber) {
+        app.getUser().click(By.cssSelector(".item-box:nth-child(" + itemNumber + ") .buttons"));
+    }
+
+    public boolean verifyByName(String text) {
+        List<WebElement> contacts = app.driver.findElements(By.cssSelector(".product-name"));
+        for (WebElement element : contacts) {
+            if (element.getText().contains(text))
+                return true;
+        }
+        return false;
+    }
+
+//    @AfterMethod
+//    public void postCondition(){
+//    removeItemFromCart();
+//// click on  ShoppingCart
+ }

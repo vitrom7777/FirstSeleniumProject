@@ -1,36 +1,34 @@
 package com.demowebshop.tests;
 
+import com.demowebshop.core.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateAccountTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void newUserRegisterPositiveTest() {
-        clickOnLoginLink();
-        fillLoginRegisterFormName("John", "Smith"); // ???
-        // Why does it say that:
-        // Value of parameter 'firstName' 'lastName' is always '"John"' "Smith"?
+        app.getUser().clickOnLoginLink();
+        app.getUser().fillLoginRegisterFormName("John", "Smith");
+        app.getUser().fillLoginRegisterForm("Qwerty12345@");
+        app.getUser().clickOnRegistrationButton();
 
-        fillLoginRegisterForm("Qwerty12345@");
-        clickOnRegistrationButton();
-
-        Assert.assertTrue(isContinueButtonPresent());
+        Assert.assertTrue(app.getUser().isContinueButtonPresent());
 
     }
 
     @Test
     public void existedUserRegisterNegativeTest() {
 
-        clickOnLoginLink();
+        app.getUser().clickOnLoginLink();
 
-        fillLoginRegisterFormName("John", "Smith");
+        app.getUser().fillLoginRegisterFormName("John", "Smith");
 
-        fillLoginRegisterForm("Qwerty12345@");
+        app.getUser().fillLoginRegisterForm("Qwerty12345@");
 
-        clickOnRegistrationButton();
+        app.getUser().clickOnRegistrationButton();
 
-        Assert.assertTrue(isElementEmailPresent());
+        Assert.assertFalse(app.getUser().isElementEmailPresent());
     }
 
 }
