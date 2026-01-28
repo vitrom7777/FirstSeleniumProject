@@ -54,4 +54,13 @@ public class UserHelper extends BaseHelper {
     public void isElementLogoutPresent() {
         Assert.assertTrue(isElementPresent(By.cssSelector("[href='/logout']")));
     }
+
+    public void clickOnLogin() {
+        clickOnLogInButton();
+    }
+
+    public void fillLoginForm(String email, String password) {
+        type(By.name("Email"), email);
+        type(By.name("Password"), password);
+    }
 }

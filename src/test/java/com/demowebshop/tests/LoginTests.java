@@ -1,7 +1,6 @@
 package com.demowebshop.tests;
 
 import com.demowebshop.core.TestBase;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
@@ -10,10 +9,9 @@ public class LoginTests extends TestBase {
     public void loginRegisteredUserPositiveTest() {
         app.getUser().clickOnLoginButton();
 
-        app.getUser().type(By.name("Email"), "test_v@gmail.com");
-        app.getUser().type(By.name("Password"), "Qwerty12345@");
+        app.getUser().fillLoginForm("test_v@gmail.com", "Qwerty12345@");
 
-        app.getUser().clickOnLogInButton();
+        app.getUser().clickOnLogin();
 
         app.getUser().isElementLogoutPresent();
 

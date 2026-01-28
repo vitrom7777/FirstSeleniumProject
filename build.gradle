@@ -18,3 +18,27 @@ dependencies {
     test {
         useTestNG()
     }
+// Work! with name -> Test (qa->no)
+// task qa(type: Test) {
+//tasks.register('smoketest', Test) {
+//    useTestNG()
+//    if (project.hasProperty('browser')) {
+//        systemProperty 'browser', "${browser}"
+//    }
+//}
+
+def registerTask(String taskName, String suitePath) {
+    tasks.register(taskName,Test) {
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+        useTestNG() {
+            suites suitePath
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+    }
+}
+registerTask('smoke','src/test/resources/smoke.xml')
+registerTask('regression','src/test/resources/regression.xml')
+

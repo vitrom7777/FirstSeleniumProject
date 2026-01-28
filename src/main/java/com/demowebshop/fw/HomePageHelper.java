@@ -1,4 +1,4 @@
-package com.demowebshop.fw.tests;
+package com.demowebshop.fw;
 
 import com.demowebshop.core.BaseHelper;
 import org.openqa.selenium.By;
