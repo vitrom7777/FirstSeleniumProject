@@ -1,6 +1,7 @@
 package com.demowebshop.tests;
 
 import com.demowebshop.core.TestBase;
+import com.demowebshop.data.UserData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,7 @@ public class CreateAccountTests extends TestBase {
     public void newUserRegisterPositiveTest() {
         app.getUser().clickOnLoginLink();
         app.getUser().fillLoginRegisterFormName("John", "Smith");
-        app.getUser().fillLoginRegisterForm("Qwerty12345@");
+        app.getUser().fillLoginRegisterForm(UserData.PASSWORD);
         app.getUser().clickOnRegistrationButton();
 
         Assert.assertTrue(app.getUser().isContinueButtonPresent());
@@ -24,7 +25,7 @@ public class CreateAccountTests extends TestBase {
 
         app.getUser().fillLoginRegisterFormName("John", "Smith");
 
-        app.getUser().fillLoginRegisterForm("Qwerty12345@");
+        app.getUser().fillLoginRegisterForm(UserData.PASSWORD);
 
         app.getUser().clickOnRegistrationButton();
 

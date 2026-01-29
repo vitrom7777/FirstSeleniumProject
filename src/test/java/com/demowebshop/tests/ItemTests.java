@@ -1,6 +1,7 @@
 package com.demowebshop.tests;
 
 import com.demowebshop.core.TestBase;
+import com.demowebshop.data.UserData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +13,7 @@ public class ItemTests extends TestBase {
     public void precondition() {
 
         app.getUser().clickOnLoginButton();
-        app.getUser().fillLoginForm("test_v@gmail.com", "Qwerty12345@");
+        app.getUser().fillLoginForm(UserData.EMAIL, UserData.PASSWORD);
         app.getUser().clickOnLogin();
     }
 

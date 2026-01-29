@@ -13,12 +13,17 @@ repositories {
 dependencies {
     implementation("org.seleniumhq.selenium:selenium-java:4.40.0")
     implementation("org.testng:testng:7.11.0")
+
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.2'
+    implementation("ch.qos.logback:logback-classic:1.5.26")
 }
     test {
         useTestNG()
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
     }
-// Work! with name -> Test (qa->no)
+
 // task qa(type: Test) {
 //tasks.register('smoketest', Test) {
 //    useTestNG()
