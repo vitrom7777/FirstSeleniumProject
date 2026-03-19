@@ -37,6 +37,7 @@ if (browser.equalsIgnoreCase("chrome")) {
     WebDriverManager.edgedriver().setup();
     driver = new EdgeDriver();
 }
+//
 
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
